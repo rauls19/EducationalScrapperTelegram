@@ -1,5 +1,7 @@
 # Educational Scrapper Telegram
 
+Work adatped from Sammer Chokly
+
 # Requirements
 
 - You must install Python 3
