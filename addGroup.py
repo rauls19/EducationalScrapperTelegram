@@ -84,8 +84,8 @@ def main():
     target_group=groups[int(g_index)]
     target_group_entity = InputPeerChannel(target_group.id, target_group.access_hash)
     print(target_group_entity)
-    for entryfile in os.listdir("./sreleoutput/"):
-        addmembers("./sreleoutput/"+entryfile, target_group_entity, client)
+    for entryfile in os.listdir(""): # Input data directory
+        addmembers(""+entryfile, target_group_entity, client) # Input data directory
 
 
 def printtitle():
