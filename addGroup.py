@@ -61,7 +61,7 @@ def addmembers(input_file, target_group_entity, client):
         for row in rows:
             try:
                 print ("Adding {}".format(row[3]))
-                user_to_add = InputPeerUser(int(row[1]), int(row[2]))
+                user_to_add = InputPeerUser(int(row[1]), long(row[2]))
                 client(InviteToChannelRequest(target_group_entity,[user_to_add]))
                 time.sleep(random.randrange(5, 10))
             except PeerFloodError:
