@@ -9,6 +9,7 @@ import traceback
 import time
 import random
 import os
+import winsound
 
 api_id =  #Enter Your 7 Digit Telegram API ID.
 api_hash = ''   #Enter Yor 32 Character API Hash
@@ -53,6 +54,7 @@ def printgroups(groups):
         i+=1
 
 def addmembers(input_file, target_group_entity, client):
+    breaker = 0
     with open(input_file, encoding='UTF-8') as f:
         rows = csv.reader(f, delimiter=",", lineterminator="\n")
         next(rows, None)
@@ -65,6 +67,10 @@ def addmembers(input_file, target_group_entity, client):
             except PeerFloodError:
                 print("Getting Flood Error from telegram. Script is stopping now. Please try again after some time.")
                 print("Waiting {} seconds".format(SLEEP_TIME))
+                breaker += 1
+                if breaker > 3:
+                    winsound.Beep(2500, 30000)
+                    break
                 time.sleep(SLEEP_TIME)
             except UserPrivacyRestrictedError:
                 print("The user's privacy settings do not allow you to do this. Skipping.")
