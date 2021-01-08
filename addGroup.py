@@ -63,7 +63,7 @@ def addmembers(input_file, target_group_entity, client):
                 print ("Adding {}".format(row[3]))
                 user_to_add = InputPeerUser(int(row[1]), int(row[2]))
                 client(InviteToChannelRequest(target_group_entity,[user_to_add]))
-                time.sleep(random.randrange(5, 10))
+                time.sleep(120)
             except PeerFloodError:
                 print("Getting Flood Error from telegram. Script is stopping now. Please try again after some time.")
                 print("Waiting {} seconds".format(SLEEP_TIME))
