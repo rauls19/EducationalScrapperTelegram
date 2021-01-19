@@ -4,9 +4,9 @@ from telethon.tl.types import InputPeerEmpty
 import csv
 
 
-api_id =  #Enter Your 7 Digit Telegram API ID.
-api_hash = ''   #Enter Yor 32 Character API Hash
-phone = ''   #Enter Your Mobilr Number With Country Code.
+api_id = 2673392 #Enter Your 7 Digit Telegram API ID.
+api_hash = '8471e5f5f3ac2fad2d4553a16d8d8cc5'   #Enter Yor 32 Character API Hash
+phone = '+34 650 662 192'   #Enter Your Mobilr Number With Country Code.
 
 def authclient(client):
     client.connect()
@@ -53,7 +53,7 @@ def getmembers(client, target_group):
 def savefile(all_participants, target_group):
     print('Saving In file...')
     try:
-        with open(""+target_group.title+".csv","w",encoding='UTF-8') as f: # Output data directory
+        with open("./sreleoutput/"+target_group.title+".csv","w",encoding='UTF-8') as f:
             writer = csv.writer(f,delimiter=",",lineterminator="\n")
             writer.writerow(['username','user id', 'access hash','name','group', 'group id'])
             for user in all_participants:

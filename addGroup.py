@@ -9,11 +9,12 @@ import traceback
 import time
 import random
 import os
+import winsound
 
-api_id =  #Enter Your 7 Digit Telegram API ID.
-api_hash = ''   #Enter Yor 32 Character API Hash
-phone = ''   #Enter Your Mobilr Number With Country Code.
-SLEEP_TIME = 100
+api_id = 2673392 #Enter Your 7 Digit Telegram API ID.
+api_hash = '8471e5f5f3ac2fad2d4553a16d8d8cc5'   #Enter Yor 32 Character API Hash
+phone = '+34 650 662 192'   #Enter Your Mobilr Number With Country Code.
+SLEEP_TIME = 120
 
 def authclient(client):
     client.connect()
@@ -39,7 +40,8 @@ def getgrups(client):
  
     for chat in chats:
         try:
-            groups.append(chat)
+            if chat.megagroup == True:
+                groups.append(chat)
         except:
             continue
 
@@ -53,6 +55,7 @@ def printgroups(groups):
         i+=1
 
 def addmembers(input_file, target_group_entity, client):
+    membersadded = 0
     with open(input_file, encoding='UTF-8') as f:
         rows = csv.reader(f, delimiter=",", lineterminator="\n")
         next(rows, None)
@@ -61,11 +64,13 @@ def addmembers(input_file, target_group_entity, client):
                 print ("Adding {}".format(row[3]))
                 user_to_add = InputPeerUser(int(row[1]), int(row[2]))
                 client(InviteToChannelRequest(target_group_entity,[user_to_add]))
-                time.sleep(random.randrange(5, 10))
+                membersadded +=1
+                time.sleep(random.randrange(90, 120)) # You can't send more than 19 request over 30 minuts
             except PeerFloodError:
-                print("Getting Flood Error from telegram. Script is stopping now. Please try again after some time.")
-                print("Waiting {} seconds".format(SLEEP_TIME))
-                time.sleep(SLEEP_TIME)
+                print("Getting Flood Error from telegram. They caught you.")
+                print("Added: "+str(membersadded)+" members")
+                winsound.Beep(2500, 30000)
+                break
             except UserPrivacyRestrictedError:
                 print("The user's privacy settings do not allow you to do this. Skipping.")
                 time.sleep(random.randrange(0, 5))
@@ -84,8 +89,8 @@ def main():
     target_group=groups[int(g_index)]
     target_group_entity = InputPeerChannel(target_group.id, target_group.access_hash)
     print(target_group_entity)
-    for entryfile in os.listdir(""): # Input data directory
-        addmembers(""+entryfile, target_group_entity, client) # Input data directory
+    for entryfile in os.listdir("./sreleoutput/"):
+        addmembers("./sreleoutput/"+entryfile, target_group_entity, client)
 
 
 def printtitle():
