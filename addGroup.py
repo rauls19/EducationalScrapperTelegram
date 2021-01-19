@@ -11,9 +11,9 @@ import random
 import os
 import winsound
 
-api_id = 2673392 #Enter Your 7 Digit Telegram API ID.
-api_hash = '8471e5f5f3ac2fad2d4553a16d8d8cc5'   #Enter Yor 32 Character API Hash
-phone = '+34 650 662 192'   #Enter Your Mobilr Number With Country Code.
+api_id =  #Enter Your 7 Digit Telegram API ID.
+api_hash = ''   #Enter Yor 32 Character API Hash
+phone = ''   #Enter Your Mobilr Number With Country Code.
 SLEEP_TIME = 120
 
 def authclient(client):
